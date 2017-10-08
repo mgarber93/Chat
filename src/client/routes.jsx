@@ -5,12 +5,12 @@ import User from './views/user.jsx';
 
 export const routes = [
   {
-    path: "/",
-    component: Splash 
-  },
-  {
     path: "/user",
     component: User
+  },
+  {
+    path: "/*",
+    component: Splash 
   }
 ];
 

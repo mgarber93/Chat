@@ -1,5 +1,3 @@
-
-
 const Promise = require('bluebird');
 const express = require('express');
 const app = express();
@@ -21,7 +19,6 @@ const setStaticPaths = function() {
   app.use(
     express.static(
       path.join(
-        //eslint-disable-next-line
         __dirname,
         '../..',
         defaultConfig.$('plugins.electrodeStaticPaths.options.pathPrefix')
@@ -37,7 +34,7 @@ const setRouteHandler = () =>
 
     return registerRoutes(app, defaultConfig.$('plugins.webapp.options'), err => {
       if (err) {
-        console.error(err); //eslint-disable-line
+        console.error(err); 
         reject(err);
       } else {
         resolve();
@@ -51,7 +48,6 @@ const startServer = () =>
       if (err) {
         reject(err);
       } else {
-        //eslint-disable-next-line
         console.log(`App listening on port: ${defaultConfig.$("connections.default.port")}`);
         resolve();
       }

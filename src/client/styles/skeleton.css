@@ -353,7 +353,7 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
-  border: 1px solid #33C3F0;
+  border: 1px solid rgb(255, 255, 255);
   outline: 0;
 }
 label, legend {
@@ -376,7 +376,7 @@ label > .label-body {
 
 /* Lists
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-ul {
+.skeleton ul {
   list-style: circle inside;
 }
 ol {

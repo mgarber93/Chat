@@ -4,9 +4,26 @@
   margin-left: auto;
   margin-right: auto;
 }
-.header {
-  margin-top: 6rem;
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
   text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+li:hover {
+  text-decoration: underline;
 }
 .docs-header {
   text-transform: uppercase;
@@ -39,7 +56,11 @@
 /* Larger than phone */
 @media (min-width: 550px) {
   .header {
-    margin-top: 18rem;
+    z-index: 1;
+    position:fixed; 
+    width:100%; 
+    height:60px; 
+    background-color:#333333;
   }
 
   .docs-section {
@@ -49,6 +70,13 @@
 
 /* Larger than tablet */
 @media (min-width: 750px) {
+  .header {
+    z-index: 1;
+    width:100%; 
+    height:60px; 
+    position: fixed; 
+    background-color:#333333;
+  }
   /* Re-overiding the width 100% declaration to match size of % based container */
   .container {
     width: 80%;

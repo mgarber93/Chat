@@ -19,8 +19,6 @@ describe('Home', () => {
 
   it('has expected content with deep render', () => {
     const initialState = {
-      checkBox: { checked: false },
-      number: { value: 999 }
     };
 
     const store = createStore(rootReducer, initialState);

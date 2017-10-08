@@ -1,48 +1,24 @@
-import {combineReducers} from 'redux';
+import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
+import { combineEpics, createEpicMiddleware } from 'redux-observable';
+import main, {mainEpic} from './main.jsx';
 
-export const toggleCheck = () => {
-  return {
-    type: 'TOGGLE_CHECK'
-  };
-};
-
-export const incNumber = () => {
-  return {
-    type: 'INC_NUMBER'
-  };
-};
-
-export const decNumber = () => {
-  return {
-    type: 'DEC_NUMBER'
-  };
-};
-
-const checkBox = (store, action) => {
-  if (action.type === 'TOGGLE_CHECK') {
-    return {
-      checked: !store.checked
-    };
+export default (state, context = {}) => {
+  var middleware = [createEpicMiddleware(mainEpic)];
+  var enhancers = [];
+  const devToolsExtension = context.devToolsExtension;
+  if (typeof devToolsExtension === 'function') {
+    enhancers.push(devToolsExtension());
   }
-
-  return store || {checked: false};
-};
-
-const number = (store, action) => {
-  if (action.type === 'INC_NUMBER') {
-    return {
-      value: store.value + 1
-    };
-  } else if (action.type === 'DEC_NUMBER') {
-    return {
-      value: store.value - 1
-    };
-  }
-
-  return store || {value: 0};
-};
-
-export default combineReducers({
-  checkBox,
-  number
-});
+  const composedEnhancers = compose(
+    applyMiddleware(...middleware),
+    ...enhancers
+  );
+  const store = createStore(
+    combineReducers({
+      main
+    }),
+    state,
+    composedEnhancers
+  );
+  return store;
+}

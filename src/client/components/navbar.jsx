@@ -11,16 +11,15 @@ const navStyle = {
 const navStyleMed = {
   fontSize: 30, 
   marginBottom: 15,
-  marginTop: 12 
+  marginTop: 10 
 };
 
 const Navbar = () => (
   <header className={custom.header}>
     <div>
       <ul>
-        <li className={skeleton['u-pull-left']}><a href="#"><h1 style={navStyle}>MG</h1></a></li>
+        <li className={skeleton['u-pull-left']}><a href="/"><h1 style={navStyle}>CHAT</h1></a></li>
         <li className={skeleton['u-pull-right']}><a href="/about"><h1 style={navStyleMed}>About</h1></a></li>
-        <li className={skeleton['u-pull-right']}><a href="/cart"><h1 style={navStyleMed}>Cart</h1></a></li>
         <li className={skeleton['u-pull-right']}><a href="/user"><h1 style={navStyleMed}>User</h1></a></li>
       </ul>
     </div>

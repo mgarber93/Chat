@@ -1,9 +1,9 @@
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
-import main, {mainEpic} from './main.jsx';
+import user, {userEpic} from './user.jsx';
 
 export default (state, context = {}) => {
-  var middleware = [createEpicMiddleware(mainEpic)];
+  var middleware = [createEpicMiddleware(userEpic)];
   var enhancers = [];
   const devToolsExtension = context.devToolsExtension;
   if (typeof devToolsExtension === 'function') {
@@ -15,7 +15,7 @@ export default (state, context = {}) => {
   );
   const store = createStore(
     combineReducers({
-      main
+      user
     }),
     state,
     composedEnhancers

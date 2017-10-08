@@ -6,7 +6,8 @@ import mountain from '../images/mountain-bg.jpeg'
 import Navbar from '../components/navbar.jsx';
 import Item from '../components/item.jsx';
 import Hero from '../components/hero.jsx';
-
+import '../styles/normalize.css';
+import '../styles/raleway.css';
 
 export default (props) => 
   <div >
@@ -15,14 +16,14 @@ export default (props) =>
     <Hero 
       name={hero.hero1} 
       cssClass={hero.hero} 
-      title="Choice mountains bro" 
-      body="Its like im actually there! But sitting at a computer. Wow, the future is intense!"
+      title="Chat" 
+      body="Its like you are actually there!"
     />
 
     <Hero 
       name="content"
       cssClass={hero.hero}
-      title="Amazing copy!"
+      title="Amazing!"
       body="The words are like jumping out at me man!"
     />
 
@@ -30,11 +31,9 @@ export default (props) =>
       name={hero.hero2} 
       cssClass={hero.hero} 
       title="Dats forest" 
-      body="You could probably fit in there"
+      body="If your friends were in there, you could talk to them"
     />
 
-    <section className={hero.construction}>
-      <h2>ABOUT</h2>
-    </section>
+    <section className={hero.construction} style={{minHeight: '20px'}} />
 
   </div>

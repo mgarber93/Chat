@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
-import Home from './views/home.jsx';
-import Hello from './views/hello.jsx';
 import Splash from './views/splash.jsx';
+import User from './views/user.jsx';
 
 export const routes = [
   {
@@ -10,8 +9,8 @@ export const routes = [
     component: Splash 
   },
   {
-    path: "/hello",
-    component: Hello
+    path: "/user",
+    component: User
   }
 ];
 

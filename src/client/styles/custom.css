@@ -19,38 +19,10 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
 }
 li:hover {
   text-decoration: underline;
-}
-.docs-header {
-  text-transform: uppercase;
-  font-size: 1.4rem;
-  letter-spacing: .2rem;
-  font-weight: 600;
-}
-.docs-section {
-  border-top: 1px solid #eee;
-  padding: 4rem 0;
-  margin-bottom: 0;
-}
-.docs-example .row, .docs-example.row, .docs-example {
-  margin-bottom: 0;
-}
-.docs-example h1,
-.docs-example h2,
-.docs-example h3,
-.docs-example h4,
-.docs-example h5,
-.docs-example h6 {
-  margin-bottom: 1rem;
-}
-.heading-font-size {
-  font-size: 1.2rem;
-  color: #999;
-  letter-spacing: normal;
 }
 
 /* Larger than phone */
@@ -63,8 +35,17 @@ li:hover {
     background-color:#333333;
   }
 
-  .docs-section {
-    padding: 6rem 0;
+  .header a{
+    color:white;
+    display:inline-block; 
+    padding:0px 30px; 
+    height:60px;
+    line-height:60px; 
+    text-align:center;
+    text-decoration:none;
+    text-transform:uppercase; 
+    letter-spacing:2px; 
+    font-weight:700;
   }
 }
 
@@ -77,6 +58,19 @@ li:hover {
     position: fixed; 
     background-color:#333333;
   }
+
+  .header a{
+    color:white;
+    display:inline-block; 
+    padding:0px 30px; 
+    height:60px;
+    line-height:60px; 
+    text-align:center;
+    text-decoration:none;
+    text-transform:uppercase; 
+    letter-spacing:2px; 
+    font-weight:700;
+  }
   /* Re-overiding the width 100% declaration to match size of % based container */
   .container {
     width: 80%;
@@ -85,9 +79,4 @@ li:hover {
 
 img {
   vertical-align: text-bottom;
-}
-
-.demoAppContainer h2 {
-  margin: 50px 0;
-  text-align: center;
 }

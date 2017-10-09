@@ -5,39 +5,71 @@ mongoose.connect('mongodb://localhost/Chat',
   {useMongoClient: true}
 );
 
-const bcrypt = require('bcrypt-nodejs');
+const Auth = require('./auths');
 
 const UserScheme = new Schema({
   username: { type: String, unique: true },
-  salt: String,
-  hash: String,
-  joined: { type: Date, default: Date.now}
+  email: { type: String, unique: true },
+  joined: { type: Date, default: Date.now},
+  auths: [{type: Schema.Types.ObjectId, ref: 'Auth'}]
 });
 
 const User = mongoose.model('User', UserScheme);
 
-User.veryifyUserSync = (username, password, done) => {
+const USER_EXISTS_MESSAGE = 'A user exists with this username already';
+const FAILED_LOCAL_AUTH = 'Incorrect user password combination';
+
+User.veryifyUser = ({username, password}) => {
   return User.findOne({'username': username })
+    .populate('auths')
+    .exec()
     .then(user => {
-      if (!user || !user.hash !== bCrypt.hashSync(password, user.salt, null)) {
-        return null;
+      return Promise.all(user.auths.map(a => a.verify(password)));
+    })
+    .then(arr => {
+      if (arr.reduce((acc, e) => acc || e, false)) {
+        return user;
+      } else {
+        throw new Error(FAILED_LOCAL_AUTH);
       }
-      return user;
     })
 };
 
-User.createUser = (username, password) => {
-  const salt = bCrypt.genSaltSync(8);
-  const hash = bCrypt.hashSync(password, salt, null);
+User.createUser = ({username, password}) => {
   return User.find({username})
     .then(doc => {
       if (!doc || doc.length === 0) {
-        return User. create({username, salt, hash});
+        return Auth.create({password})
       } else {
-        throw Promise.resolve(null);
+        throw new Error(USER_EXISTS_MESSAGE);
       }
+    })
+    .then(auth => {
+       return User.create(
+         {
+           username,
+           auths: [auth._id]
+          }
+        );
     });
-}
+};
 
+/**
+ * Signup is a callback wrapper for createUser for PassportJS 
+ */
+User.signup = ({username, password}, done) => {
+  User.createUser({username, password})
+    .then(user => done(null, JSON.stringify(user)))
+    .catch(err => done(err, null));
+};
+
+/**
+ * LocalLogin is a callback wrapper for verifyUser for PassportJS 
+ */
+User.localLogin = ({username, password}, done) => {
+  User.veryifyUser({username, password}) 
+    .then(user => done(null, user))
+    .catch(err => done(err, null));
+};
 
 module.exports = User;

@@ -7,6 +7,14 @@ const defaultConfig = require('electrode-confippet').config;
 const Confippet = require('electrode-confippet');
 const { users } = require('./routes');
 
+const {
+  auth,
+  passport,
+  morgan,
+  bodyParser,
+  cookieParser
+} = require('./middlewares');
+
 const loadConfigs = function(userConfig) {
   //use confippet to merge user config and default config
   if (_.get(userConfig, 'plugins.electrodeStaticPaths.enable')) {
@@ -43,6 +51,19 @@ const setRouteHandler = () =>
       }
     });
   });
+
+const setMidlewares = () => 
+  new Promise((resolve, reject) => {
+    // set up middlewares
+    app.use(morgan('dev'));
+    app.use(cookieParser());
+    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.json());
+    app.use(auth.session);
+    app.use(passport.initialize());
+    app.use(passport.session());
+    resolve();
+  })
 
 const startServer = () =>
   new Promise((resolve, reject) => {

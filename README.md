@@ -1,10 +1,10 @@
 # Chat [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 > 
 ## Description
-Chat client/service
-
+Chat client and service.
+![alt text](https://github.com/mgarber93/Chat/master/assets/chat.gif "Demo Gif 1")
 ## Installation
-With mongo and redis running, install required packages.
+Make sure mongo and redis are running.
 ```sh
 $ npm install 
 $ npm start

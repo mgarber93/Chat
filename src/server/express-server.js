@@ -5,7 +5,7 @@ const path = require('path');
 const _ = require('lodash');
 const defaultConfig = require('electrode-confippet').config;
 const Confippet = require('electrode-confippet');
-const { users } = require('./routes');
+const { users, auths } = require('./routes');
 
 const {
   auth,
@@ -35,12 +35,13 @@ const setStaticPaths = function() {
     )
   );
   app.use('/api/users', users); 
+  app.use('/api/auths', auths)
 };
 
 const setRouteHandler = () =>
   new Promise((resolve, reject) => {
     const webapp = p => (p.startsWith('.') ? path.resolve(p) : p);
-    const registerRoutes = require(webapp(defaultConfig.$("plugins.webapp.module"))); //eslint-disable-line
+    const registerRoutes = require(webapp(defaultConfig.$("plugins.webapp.module"))); 
 
     return registerRoutes(app, defaultConfig.$('plugins.webapp.options'), err => {
       if (err) {

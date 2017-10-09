@@ -5,6 +5,7 @@ const path = require('path');
 const _ = require('lodash');
 const defaultConfig = require('electrode-confippet').config;
 const Confippet = require('electrode-confippet');
+const { users } = require('./routes');
 
 const loadConfigs = function(userConfig) {
   //use confippet to merge user config and default config
@@ -25,6 +26,7 @@ const setStaticPaths = function() {
       )
     )
   );
+  app.use('/api/users', users); 
 };
 
 const setRouteHandler = () =>

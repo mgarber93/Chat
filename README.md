@@ -2,7 +2,7 @@
 > 
 ## Description
 Chat client and service.
-![alt text](https://github.com/mgarber93/Chat/master/assets/chat.gif "Demo Gif 1")
+![Demo](https://github.com/mgarber93/Chat/blob/master/assets/chat.gif "Demo Gif 1")
 ## Installation
 Make sure mongo and redis are running.
 ```sh
